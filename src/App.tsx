@@ -1,9 +1,13 @@
 // in src/App.tsx
 import React from "react";
+import { Dashboard } from "./Dashboard";
 import { fetchUtils, Admin, Resource } from "react-admin";
-import { PostList, PostEdit } from "./Posts";
+import PostIcon from "@mui/icons-material/Book";
+import UserIcon from "@mui/icons-material/Group";
+
 import { UserList } from "./components/Users";
 import jsonServerProvider from "ra-data-json-server";
+import { PostList, PostEdit, PostCreate } from "./Posts";
 
 const httpClient = (url, options = {}) => {
   options.user = {
@@ -18,9 +22,20 @@ console.log(jsonServerProvider("https://jsonplaceholder.typicode.com"));
 
 
 const App = () => (
-  <Admin dataProvider={dataProvider} title="example admin">
-    <Resource name="posts" list={PostList} edit={PostEdit} />
-    <Resource name="users" list={UserList} recordRepresentation="name" />
+  <Admin dataProvider={dataProvider} dashboard={Dashboard}>
+    <Resource
+      name="posts"
+      list={PostList}
+      edit={PostEdit}
+      create={PostCreate}
+      icon={PostIcon}
+    />
+    <Resource
+      name="users"
+      list={UserList}
+      icon={UserIcon}
+      recordRepresentation="name"
+    />
   </Admin>
 );
 export default App;
