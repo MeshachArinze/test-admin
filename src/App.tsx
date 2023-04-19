@@ -8,8 +8,10 @@ import UserIcon from "@mui/icons-material/Group";
 import { UserList } from "./components/Users";
 import jsonServerProvider from "ra-data-json-server";
 import { PostList, PostEdit, PostCreate } from "./Posts";
+import { authProvider } from "./authProvider";
 
-const httpClient = (url, options = {}) => {
+
+const httpClient = (url: any, options = {}) => {
   options.user = {
     authenticated: true,
     token: "SRTRDFVESGNJYTUKTYTHRG",
@@ -22,7 +24,12 @@ console.log(jsonServerProvider("https://jsonplaceholder.typicode.com"));
 
 
 const App = () => (
-  <Admin dataProvider={dataProvider} dashboard={Dashboard}>
+  <Admin
+    authProvider={authProvider}
+    dataProvider={dataProvider}
+    dashboard={Dashboard}
+
+  >
     <Resource
       name="posts"
       list={PostList}

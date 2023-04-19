@@ -1,7 +1,7 @@
 // TypeScript users must reference the type: `AuthProvider`
 export const authProvider = {
   // called when the user attempts to log in
-  login: ({ username }) => {
+  login: ({ username: {} }) => {
     localStorage.setItem("username", username);
     // accept all username/password combinations
     return Promise.resolve();
